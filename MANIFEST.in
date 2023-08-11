@@ -1,0 +1,4 @@
+include metamash/metamash.LICENSE
+include metamash/metamash.CITATION
+include metamash/metamash.VERSION
+recursive-include metamash *
