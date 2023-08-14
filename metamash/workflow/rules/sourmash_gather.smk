@@ -35,8 +35,8 @@ rule sourmash_gather:
 
 rule aggr_gather:
     input: 
-        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.csv'), sample = SAMPLES),
-        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.txt'), sample = SAMPLES)
+        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.csv'), sample = SAMPLES, ksize = KSIZE),
+        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.txt'), sample = SAMPLES, ksize = KSIZE)
     output:
         os.path.join(FLAGS, "sourmash_gather.flag")
     threads: 

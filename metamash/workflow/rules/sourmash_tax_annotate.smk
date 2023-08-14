@@ -25,7 +25,7 @@ rule tax_annotate:
 
 rule aggr_tax_annotate:
     input: 
-        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.with-lineages.csv'), sample = SAMPLES)
+        expand(os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.with-lineages.csv'), sample = SAMPLES, ksize = KSIZE)
     output:
         os.path.join(FLAGS, "sourmash_tax_annotate.flag")
     threads: 

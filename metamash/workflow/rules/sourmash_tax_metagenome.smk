@@ -31,7 +31,7 @@ rule sourmash_tax_metagenome:
 
 rule aggr_tax_metagenome:
     input: 
-        expand(os.path.join(OUTPUT, '3-taxprofile', '{sample}.k{ksize}.gather.genbank.krona.tsv'), sample = SAMPLES)
+        expand(os.path.join(OUTPUT, '3-taxprofile', '{sample}.k{ksize}.gather.genbank.krona.tsv'), sample = SAMPLES, ksize = KSIZE)
     output:
         os.path.join(FLAGS, "sourmash_tax_metagenome.flag")
     threads: 
