@@ -10,7 +10,7 @@ rule tax_annotate:
         mem_mb=BigJobMem,
         time=240,
     params:
-        outd= lambda w: os.path.join(out_dir, f'2-gather'),
+        outd= lambda w: os.path.join(OUTPUT, f'2-gather'),
     conda: 
         os.path.join("..", "envs", "sourmash.yml")
     log: 
