@@ -55,7 +55,8 @@ def get_input_lr_fastqs(wildcards):
 #####
 sourmash_params = config['sourmash']
 search_databases = sourmash_params['search_databases'] # must be dictionary
-ksize = sourmash_params.get("ksize", [31])
+ksize = sourmash_params['ksize']
+
 if not isinstance(ksize, list):
     ksize=[ksize]
 for k in ksize:
