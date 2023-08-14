@@ -1,6 +1,6 @@
 rule sourmash_gather:
     input: 
-        os.path.join(OUTPUT, "1-sketch", "{sample}.dna.sig.zip"),
+        query = os.path.join(OUTPUT, "1-sketch", "{sample}.dna.sig.zip"),
         databases = lambda w: search_databases[f"k{w.ksize}"] 
     output:
         gather_csv=os.path.join(OUTPUT, '2-gather', '{sample}.k{ksize}.gather.csv'),
