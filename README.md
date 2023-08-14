@@ -43,4 +43,15 @@ trimnami run --reads metamash/test_data --host host_genome_db/human-t2t-hla.fa -
 
 You will find the host depleted and trimmed reads in `<output>/nanopore` so here e.g. `trimnami_output/nanopore`.
 
-3. Run [metamash]()
+
+3. Download the mmseqs2 v 13.45111 uniref50 database - this takes ages in Australia~
+
+e.g.
+
+```
+# will write to 'uniref50' directory
+mmseqs databases UniRef50 uniref50 tmp --threads 3  
+```
+
+
+4. Run [metamash]()

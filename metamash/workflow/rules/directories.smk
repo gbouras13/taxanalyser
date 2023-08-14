@@ -6,6 +6,11 @@ Ensures consistent variable names and file locations for the pipeline.
 FLAGS = os.path.join(OUTPUT, 'FLAGS')
 LOGS = os.path.join(OUTPUT, 'LOGS')
 BENCHMARKS = os.path.join(OUTPUT, 'BENCHMARKS')
+PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
+
+# MMSEQS2
+
+FASTA = os.path.join(PROCESSING, 'FASTA')
 
 # PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
 # RESULTS = os.path.join(OUTPUT, 'RESULTS')
