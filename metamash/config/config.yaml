@@ -31,7 +31,7 @@ sourmash:
     # estimatednumber of base pairs required for a database match.
     # note that this affects runtime and memory. We recommend running
     # with default threshold (50kb) first and then modifying if necessary.
-    threshold_bp: 50000
+    threshold_bp: 500
 
     k31:
       #- /hpcfs/users/a1667917/metagenomics_dbs/sourmash/genbank-2022.03-archaea-k31.zip
