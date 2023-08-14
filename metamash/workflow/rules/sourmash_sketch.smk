@@ -9,9 +9,9 @@ rule sourmash_sketch_dna:
         mem_mb=BigJobMem,
         time=240,
     log: 
-        os.path.join(LOGS, "sketch", "{sample}.sketch_dna.log")
+        os.path.join(LOGS, "1-sketch", "{sample}.sketch_dna.log")
     benchmark: 
-        os.path.join(BENCHMARKS, "sketch", "{sample}.sketch_dna.benchmark")
+        os.path.join(BENCHMARKS, "1-sketch", "{sample}.sketch_dna.benchmark")
     conda: 
         os.path.join("..", "envs", "sourmash.yml")
     shell:

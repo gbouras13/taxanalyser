@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# conda envs 
+metamash/workflow/conda/*
+
 # Distribution / packaging
 .Python
 env/

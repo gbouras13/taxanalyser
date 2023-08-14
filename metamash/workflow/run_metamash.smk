@@ -76,6 +76,8 @@ include: "rules/directories.smk"
 
 include: "rules/sourmash_sketch.smk"
 include: "rules/sourmash_gather.smk"
+include: "rules/sourmash_tax_annotate.smk"
+include: "rules/sourmash_tax_metagenome.smk"
 
 
 # import targets
@@ -85,7 +87,7 @@ include: "rules/targets.smk"
 
 rule all:
     input:
-        TargetFiles
+        TargetFilesSourmash
 
 
 

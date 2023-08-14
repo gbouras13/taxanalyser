@@ -13,9 +13,9 @@ rule sourmash_gather:
         mem_mb=BigJobMem,
         time=1320,
     log: 
-        os.path.join(LOGS, "gather", "{sample}.k{ksize}.gather.log")
+        os.path.join(LOGS, "2-gather", "{sample}.k{ksize}.gather.log")
     benchmark: 
-        os.path.join(BENCHMARKS, "gather", "{sample}.k{ksize}.gather.benchmark")
+        os.path.join(BENCHMARKS, "2-gather", "{sample}.k{ksize}.gather.benchmark")
     conda: 
         os.path.join("..", "envs", "sourmash.yml")
     shell:
