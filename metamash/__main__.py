@@ -145,7 +145,7 @@ Database:           metamash install --database [file]
         help_option_names=["-h", "--help"], ignore_unknown_options=True
     ),
 )
-@click.option("--input", "_input", help="Input csv", type=str, required=True)
+@click.option("--input", "_input", help="Input directory", type=str, required=True)
 @click.option(
             "--database",
             help="Database directory",
