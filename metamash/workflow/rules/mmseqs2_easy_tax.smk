@@ -10,9 +10,10 @@ rule run_mmseqs_easy_tax:
     input: 
         fasta = os.path.join(FASTA, "{sample}.fasta")
     output:
-        outdir=os.path.join(MMSEQS2, '{sample}')
+        outdir=os.path.join(MMSEQS2, '{sample}'),
+        outtouch=os.path.join(MMSEQS2, 'flags', '{sample}.done')
     params:
-        uniref50 = UNIREF50_DB,
+        gtdb = os.path.join(GTDB_DIR, 'GTDB'),
         tmpdir = TMPDIR
     threads: 
         THREADS
@@ -28,7 +29,22 @@ rule run_mmseqs_easy_tax:
     shell:
         # touch output to let workflow continue in cases where 0 results are found
         """
-        mmseqs easy-taxonomy {input.fasta} {params.uniref50} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads}
+        mmseqs easy-taxonomy {input.fasta} {params.gtdb} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads}
+        touch {output.outtouch}
         """
 
 
+rule aggr_mmseqs2_easy_tax:
+    input:
+        expand(os.path.join(MMSEQS2, 'flags', '{sample}.done'), sample = SAMPLES)
+    output:
+        os.path.join(FLAGS, "aggr_mmseqs2.flag")
+    threads:
+        1
+    resources:
+        mem_mb=SmallJobMem,
+        time=SmallTime
+    shell:
+        """
+        touch {output[0]}
+        """

@@ -22,7 +22,7 @@ rule aggr_fastq_to_fasta:
     input:
         expand(os.path.join(FASTA, "{sample}.fasta"), sample = SAMPLES)
     output:
-        os.path.join(FLAGS, "aggr_fastq_to_fasta.txt")
+        os.path.join(FLAGS, "aggr_fastq_to_fasta.flag")
     threads:
         1
     resources:

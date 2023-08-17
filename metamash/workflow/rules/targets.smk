@@ -12,5 +12,10 @@ os.path.join(FLAGS, "sourmash_tax_metagenome.flag")
 
 ]
 
+TargetFilesMMseqs2 = [
+os.path.join(FLAGS, "aggr_fastq_to_fasta.flag"),
+os.path.join(FLAGS, "aggr_mmseqs2.flag")
+
+]
 
 #os.path.join(FLAGS, "aggr_fastq_to_fasta.txt")

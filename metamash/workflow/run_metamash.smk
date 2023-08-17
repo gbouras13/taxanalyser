@@ -53,18 +53,21 @@ def get_input_lr_fastqs(wildcards):
 #####
 # db search
 #####
-sourmash_params = config['sourmash']
-search_databases = sourmash_params['search_databases'] # must be dictionary
-KSIZE = sourmash_params.get("ksize", [31, 51])
+# sourmash_params = config['sourmash']
+# search_databases = sourmash_params['search_databases'] # must be dictionary
+# KSIZE = sourmash_params.get("ksize", [31, 51])
 
-if not isinstance(KSIZE, list):
-    KSIZE=[KSIZE]
-for k in KSIZE:
-    k_str = f"k{k}"
-    if k_str not in search_databases.keys():
-        raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
-        sys.exit(-1)
+# if not isinstance(KSIZE, list):
+#     KSIZE=[KSIZE]
+# for k in KSIZE:
+#     k_str = f"k{k}"
+#     if k_str not in search_databases.keys():
+#         raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
+#         sys.exit(-1)
 
+# mmseqs2 dirs
+GTDB_DIR = config['gtdb_dir']
+TMPDIR = config['tmp']
 
 ##############################
 # Import rules and functions
@@ -75,10 +78,13 @@ for k in KSIZE:
 # import dir
 include: "rules/directories.smk"
 
-include: "rules/sourmash_sketch.smk"
-include: "rules/sourmash_gather.smk"
-include: "rules/sourmash_tax_annotate.smk"
-include: "rules/sourmash_tax_metagenome.smk"
+#include: "rules/sourmash_sketch.smk"
+#include: "rules/sourmash_gather.smk"
+#include: "rules/sourmash_tax_annotate.smk"
+#include: "rules/sourmash_tax_metagenome.smk"
+
+include: "rules/fastq_to_fasta.smk"
+include: "rules/mmseqs2_easy_tax.smk"
 
 
 # import targets
@@ -88,7 +94,7 @@ include: "rules/targets.smk"
 
 rule all:
     input:
-        TargetFilesSourmash
+        TargetFilesMMseqs2
 
 
 
