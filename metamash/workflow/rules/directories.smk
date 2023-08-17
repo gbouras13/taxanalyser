@@ -11,6 +11,7 @@ PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
 # MMSEQS2
 
 FASTA = os.path.join(PROCESSING, 'FASTA')
+MMSEQS2  = os.path.join(OUTPUT, 'MMSEQS2')
 
 # PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
 # RESULTS = os.path.join(OUTPUT, 'RESULTS')
