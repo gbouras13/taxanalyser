@@ -29,7 +29,7 @@ rule run_mmseqs_easy_tax:
     shell:
         # touch output to let workflow continue in cases where 0 results are found
         """
-        mmseqs easy-taxonomy {input.fasta} {params.gtdb} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads}
+        mmseqs easy-taxonomy {input.fasta} {params.gtdb} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads} 2>> {log}
         touch {output.outtouch}
         """
 
