@@ -5,8 +5,8 @@ log: 'metamash/metamash.log'
 threads: 1
 
 # Snakemake Params
-BigJobMem: 250000     
-BigJobCpu: 32   
+BigJobMem: 375000     
+BigJobCpu: 80   
 MediumJobMem: 32000
 MediumJobCpu: 8     
 SmallJobMem: 4000
