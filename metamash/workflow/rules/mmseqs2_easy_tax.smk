@@ -16,7 +16,7 @@ rule run_mmseqs_easy_tax:
         gtdb = os.path.join(GTDB_DIR, 'GTDB'),
         tmpdir = TMPDIR
     threads: 
-        THREADS
+        BigJobCpu
     resources:
         mem_mb=BigJobMem,
         time=1320,
