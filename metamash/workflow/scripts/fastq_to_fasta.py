@@ -1,30 +1,22 @@
 #!/usr/bin/env python3
 
 import gzip
+from Bio import SeqIO
+
+
+def open_fastq_file(input_filename):
+    if input_filename.endswith('.gz'):
+        return gzip.open(input_filename, 'rt')
+    else:
+        return open(input_filename, 'r')
 
 def fastq_to_fasta(input_filename, output_filename):
-    if input_filename.endswith('.gz'):
-        open_func = gzip.open
-    else:
-        open_func = open
-
-    with open_func(input_filename, 'rt') as input_file, open(output_filename, 'w') as output_file:
-        line_number = 0
-        sequence = ""
-
-        for line in input_file:
-            line = line.strip()
-
-            if line_number % 4 == 1:
-                sequence = line
-                output_file.write(f'>{sequence}\n')
-            elif line_number % 4 == 0:
-                line_length = len(sequence)
-
-                for i in range(0, line_length, 60):
-                    output_file.write(sequence[i:i + 60] + '\n')
-
-            line_number += 1
+    try:
+        with open_fastq_file(input_filename) as input_file, open(output_filename, 'w') as output_file:
+            for record in SeqIO.parse(input_file, "fastq"):
+                SeqIO.write(record, output_file, "fasta")
+    except Exception as e:
+        print(f"A parsing error occurred: {e}")
 
 # to actually run the script
 fastq_to_fasta(snakemake.input[0], snakemake.output[0])
