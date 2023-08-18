@@ -17,8 +17,8 @@ BigTime: 300
 MediumTime: 120
 
 # mmseqs2 params
-uniref50: 'uniref50'
 gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
+uniref_50: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
 tmp: '/hpcfs/users/a1667917/tmp'
 
 # sourmash config 

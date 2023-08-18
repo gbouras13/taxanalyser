@@ -13,7 +13,7 @@ rule run_mmseqs_easy_tax:
         outdir=os.path.join(MMSEQS2, '{sample}'),
         outtouch=os.path.join(MMSEQS2, 'flags', '{sample}.done')
     params:
-        gtdb = os.path.join(GTDB_DIR, 'GTDB'),
+        db = os.path.join(UNIREF50_DIR, 'UniRef50'),
         tmpdir = TMPDIR
     threads: 
         BigJobCpu
@@ -29,7 +29,7 @@ rule run_mmseqs_easy_tax:
     shell:
         # touch output to let workflow continue in cases where 0 results are found
         """
-        mmseqs easy-taxonomy {input.fasta} {params.gtdb} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads} --orf-filter 0 2>> {log}
+        mmseqs easy-taxonomy {input.fasta} {params.db} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads} --orf-filter 0 2>> {log}
         touch {output.outtouch}
         """
 

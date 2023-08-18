@@ -67,6 +67,7 @@ def get_input_lr_fastqs(wildcards):
 
 # mmseqs2 dirs
 GTDB_DIR = config['gtdb_dir']
+UNIREF50_DIR = config['uniref_50']
 TMPDIR = config['tmp']
 
 ##############################
