@@ -5,9 +5,6 @@ import attrmap.utils as au
 from pathlib import Path
 
 
-configfile: os.path.join(workflow.basedir, '../', 'config', 'config.yaml')
-
-
 # Concatenate Snakemake's own log file with the master log file
 # log defined below
 def copy_log_file():
@@ -75,17 +72,17 @@ TMPDIR = config.tmpdir
 
 
 
-# sourmash_params = config.sourmash
-# search_databases = config.sourmash.search_databases
-# KSIZE = sourmash_params.get("ksize", [31, 51])
+sourmash_params = config.sourmash
+search_databases = config.sourmash.search_databases
+KSIZE = sourmash_params.get("ksize", [31, 51])
 
-# if not isinstance(KSIZE, list):
-#     KSIZE=[KSIZE]
-# for k in KSIZE:
-#     k_str = f"k{k}"
-#     if k_str not in search_databases.keys():
-#         raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
-#         sys.exit(-1)
+if not isinstance(KSIZE, list):
+    KSIZE=[KSIZE]
+for k in KSIZE:
+    k_str = f"k{k}"
+    if k_str not in search_databases.keys():
+        raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
+        sys.exit(-1)
 
 
 
