@@ -47,10 +47,12 @@ def create_json(summaries_dir,  json_file_path):
                 # Add the stats to the result dictionary
                 result_dict[sample] = stats
 
-    print(result_dict_sorted)
-    
+
     # Reorganize barcodes by alphanumeric order
     result_dict_sorted = {k: result_dict[k] for k in sorted(result_dict)}
+
+
+    print(result_dict_sorted)
 
     # Convert the dictionary to JSON format
     json_data = json.dumps(result_dict_sorted, indent=4)
