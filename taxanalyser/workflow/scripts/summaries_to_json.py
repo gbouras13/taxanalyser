@@ -47,15 +47,17 @@ def create_json(summaries_dir,  json_file_path):
                 # Add the stats to the result dictionary
                 result_dict[sample] = stats
 
-        # Reorganize barcodes by alphanumeric order
-        result_dict_sorted = {k: result_dict[k] for k in sorted(result_dict)}
+    print(result_dict_sorted)
+    
+    # Reorganize barcodes by alphanumeric order
+    result_dict_sorted = {k: result_dict[k] for k in sorted(result_dict)}
 
-        # Convert the dictionary to JSON format
-        json_data = json.dumps(result_dict_sorted, indent=4)
+    # Convert the dictionary to JSON format
+    json_data = json.dumps(result_dict_sorted, indent=4)
 
-        # Write the JSON data to a new file
-        with open(json_file_path, 'w') as json_file:
-            json_file.write(json_data)
+    # Write the JSON data to a new file
+    with open(json_file_path, 'w') as json_file:
+        json_file.write(json_data)
 
 # to actually run the script
 create_json(snakemake.params.summaries_dir, snakemake.output.json_file_path)
