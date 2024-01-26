@@ -73,8 +73,8 @@ TMPDIR = config.tmpdir
 # db search
 #####
 
-sourmash_params = config.sourmash
-search_databases = sourmash_params.search_databases
+sourmash_params = config['sourmash']
+search_databases = sourmash_params['search_databases'] # must be dictionary
 KSIZE = sourmash_params.get("ksize", [31, 51])
 
 if not isinstance(KSIZE, list):

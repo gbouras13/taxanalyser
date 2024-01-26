@@ -1,4 +1,9 @@
 # Snakemake config
+args: 
+  input:
+  output: 
+  log: 
+  threads: 1
 
 # Snakemake Params
 BigJobMem: 375000     
