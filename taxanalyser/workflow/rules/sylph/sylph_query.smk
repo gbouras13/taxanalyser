@@ -1,6 +1,5 @@
 
 rule run_sylph:
-    input: 
     input:
         reads = expand(os.path.join(dir.out.qc, "{sample}_filtlong.fastq.gz"), sample = SAMPLES)
     output:
