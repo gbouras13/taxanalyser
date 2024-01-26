@@ -25,7 +25,7 @@ onerror:
 # config file
 configfile: os.path.join(workflow.basedir, "../", "config", "config.yaml")
 
-config = ap.AttrMap(configfile)
+config = ap.AttrMap(config)
 
 """
 start of pipeline
