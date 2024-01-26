@@ -15,7 +15,7 @@ rule fastq_to_fasta:
         mem=str(config.resources.sml.mem) + "MB",
         time=config.resources.sml.time,
     script:
-        '../scripts/fastq_to_fasta.py'
+        os.path.join(dir.scripts, "fastq_to_fasta.py")
 
 
 rule aggr_fastq_to_fasta:
