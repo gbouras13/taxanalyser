@@ -56,8 +56,8 @@ setup(
         "snakemake>=7.14.0",
         "pyyaml>=6.0",
         "Click>=8.1.3",
-        "metasnek>=0.0.6",
-        "attrmap>=0.0.5"
+        "attrmap>=0.0.5",
+        "biopython>=1.76"
     ],
     entry_points={
         "console_scripts": [
