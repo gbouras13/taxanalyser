@@ -36,8 +36,7 @@ include: os.path.join("rules", "preflight", "directories.smk")
 include: os.path.join("rules", "preflight", "functions.smk")
 # samples
 include: os.path.join("rules", "preflight", "samples.smk")
-# targets
-include: os.path.join("rules", "preflight", "targets_long.smk")
+
 
 
 
@@ -92,7 +91,6 @@ for k in KSIZE:
 
 
 # import dir
-include: os.path.join("rules", "preflight", "directories.smk")
 
 include: os.path.join("rules", "qc", "host_lambda_phix174_depletion.smk")
 
