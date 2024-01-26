@@ -69,6 +69,7 @@ TMPDIR = config.tmpdir
 print(config)
 
 sourmash_params = config.sourmash
+print(sourmash_params)
 search_databases = config.sourmash.search_databases
 KSIZE = sourmash_params.get("ksize", [31, 51])
 
