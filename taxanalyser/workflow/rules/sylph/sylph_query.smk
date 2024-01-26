@@ -20,5 +20,5 @@ rule run_sylph:
         os.path.join(dir.env, "sylph.yaml")
     shell:
         """
-        sylph query {input.reads} {params.gtdb_200} -t {threads}  > {output.results}
+        sylph profile {input.reads} {params.gtdb_200} -t {threads}  > {output.results}
         """
