@@ -25,7 +25,7 @@ onerror:
 # config file
 configfile: os.path.join(workflow.basedir, "../", "config", "config.yaml")
 
-config = ap.AttrMap(config)
+config = ap.AttrMap(configfile)
 
 """
 start of pipeline
@@ -56,9 +56,9 @@ SAMPLES = list(dictReads.keys())
 # mmseqs2 dirs
 LAMBDA = os.path.join(dir.contaminant_genomes, "lambda.fasta")
 
-# GTDB_DIR = config.databases.mmseqs2.gtdb_dir
-# UNIREF50_DIR = config.databases.mmseqs2.uniref_50
-# TMPDIR = config.tmpdir
+GTDB_DIR = config.databases.mmseqs2.gtdb_dir
+UNIREF50_DIR = config.databases.mmseqs2.uniref_50
+TMPDIR = config.tmpdir
 
 
 
