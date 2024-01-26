@@ -1,0 +1,42 @@
+Summary stats for barcode05:
+        Significant reads (not host or lambda): 30691
+        Total reads inc host (no lambda): 39461
+        Proportion of reads mapped to chm13: 22.22%
+        Number of reads mapped to chm13 (and depleted): 8770
+        Number of reads mapped to lambda phage (and depleted): 1122
+
+Summary stats for barcode04:
+        Significant reads (not host or lambda): 47794
+        Total reads inc host (no lambda): 62195
+        Proportion of reads mapped to chm13: 23.15%
+        Number of reads mapped to chm13 (and depleted): 14401
+        Number of reads mapped to lambda phage (and depleted): 1955
+
+Summary stats for barcode02:
+        Significant reads (not host or lambda): 62378
+        Total reads inc host (no lambda): 62514
+        Proportion of reads mapped to chm13: 0.22%
+        Number of reads mapped to chm13 (and depleted): 136
+        Number of reads mapped to lambda phage (and depleted): 783
+
+Summary stats for barcode03:
+        Significant reads (not host or lambda): 74766
+        Total reads inc host (no lambda): 74881
+        Proportion of reads mapped to chm13: 0.15%
+        Number of reads mapped to chm13 (and depleted): 115
+        Number of reads mapped to lambda phage (and depleted): 586
+
+Summary stats for barcode06:
+        Significant reads (not host or lambda): 22125
+        Total reads inc host (no lambda): 28000
+        Proportion of reads mapped to chm13: 20.98%
+        Number of reads mapped to chm13 (and depleted): 5875
+        Number of reads mapped to lambda phage (and depleted): 731
+
+Summary stats for barcode01:
+        Significant reads (not host or lambda): 83472
+        Total reads inc host (no lambda): 83559
+        Proportion of reads mapped to chm13: 0.1%
+        Number of reads mapped to chm13 (and depleted): 87
+        Number of reads mapped to lambda phage (and depleted): 779
+

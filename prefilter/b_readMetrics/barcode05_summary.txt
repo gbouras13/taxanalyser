@@ -1,0 +1,43 @@
+Summary stats for barcode05:
+        Significant reads (not host or lambda): 30691
+        Total reads inc host (no lambda): 39461
+        Proportion of reads mapped to chm13: 22.22%
+        Number of reads mapped to chm13 (and depleted): 8770
+        Number of reads mapped to lambda phage (and depleted): 1122
+
+        Paths submitted to program:
+            chm13 fasta reference genome path = /Users/issyburdon/Library/CloudStorage/Box-Box/meta_pipe_box/x_contaminants/chm13_ref/GCF_009914755.1_T2T-CHM13v2.0_genomic.fasta
+            lambda phage fasta reference genome path =/Users/issyburdon/Library/CloudStorage/Box-Box/meta_pipe_box/x_contaminants/phage_lambda.fasta
+            Fastq reads file path = a_readsConcat/barcode05.fastq.gz
+            Output file path = b_depletedReads/barcode05
+
+    Lambda depletion minimap2 generated report:
+    [M::mm_idx_gen::0.002*3.06] collected minimizers
+[M::mm_idx_gen::0.007*3.71] sorted minimizers
+[M::main::0.007*3.70] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.007*3.57] mid_occ = 10
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.007*3.49] distinct minimizers: 9041 (99.99% are singletons); average occurrences: 1.000; average spacing: 5.364; total length: 48502
+[M::worker_pipeline::5.399*0.57] mapped 40583 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -t 4 -ax map-ont /Users/issyburdon/Library/CloudStorage/Box-Box/meta_pipe_box/x_contaminants/phage_lambda.fasta a_readsConcat/barcode05.fastq.gz
+[M::main] Real time: 5.401 sec; CPU: 3.098 sec; Peak RSS: 0.174 GB
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 39461 reads
+
+
+    chm13 depletion minimap2 generated report:
+    [M::mm_idx_gen::33.801*1.41] collected minimizers
+[M::mm_idx_gen::41.169*1.87] sorted minimizers
+[M::main::41.169*1.87] loaded/built the index for 24 target sequence(s)
+[M::mm_mapopt_update::41.896*1.85] mid_occ = 892
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 24
+[M::mm_idx_stat::42.442*1.84] distinct minimizers: 100276788 (38.70% are singletons); average occurrences: 5.856; average spacing: 5.308; total length: 3117275501
+[M::worker_pipeline::49.212*1.84] mapped 39461 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -t 4 -ax map-ont /Users/issyburdon/Library/CloudStorage/Box-Box/meta_pipe_box/x_contaminants/chm13_ref/GCF_009914755.1_T2T-CHM13v2.0_genomic.fasta b_depletedReads/barcode05_lambda.fastq
+[M::main] Real time: 49.514 sec; CPU: 90.514 sec; Peak RSS: 16.238 GB
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 30691 reads
+
+    
