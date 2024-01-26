@@ -8,7 +8,7 @@ Taken from Rob's [atavide_lite](https://github.com/linsalrob/atavide_lite/blob/m
 
 rule run_mmseqs_easy_tax_uniref50:
     input: 
-        fasta = os.path.join(dir.processing.fastas, "{sample}.fasta")
+        fasta = os.path.join(dir.out.fastas, "{sample}.fasta")
     output:
         outdir=os.path.join(dir.out.mmseqs2, '{sample}'),
         outtouch=os.path.join(dir.out.mmseqs2, 'flags', '{sample}.done')
