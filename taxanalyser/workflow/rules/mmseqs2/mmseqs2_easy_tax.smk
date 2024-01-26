@@ -36,7 +36,7 @@ rule run_mmseqs_easy_tax_uniref50:
 
 rule aggr_mmseqs2_easy_tax:
     input:
-        expand(outtouch=os.path.join(dir.out.mmseqs2, 'flags', '{sample}.done'), sample = SAMPLES)
+        expand(os.path.join(dir.out.mmseqs2, 'flags', '{sample}.done'), sample = SAMPLES)
     output:
         os.path.join(dir.out.flags, "aggr_mmseqs2_tax.flag")
     threads: config.resources.sml.cpu
