@@ -13,6 +13,14 @@ PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
 FASTA = os.path.join(PROCESSING, 'FASTA')
 MMSEQS2  = os.path.join(OUTPUT, 'MMSEQS2')
 
+# contaminants
+dir.contaminant_genomes = os.path.join(workflow.basedir, "../", "contaminant_genomes")
+dir.out.contaminant_index = os.path.join(dir.out.processing, "contaminant_index")
+dir.out.contaminant_removal = os.path.join(dir.out.processing, "contaminant_removal")
+
+
+
+
 # PROCESSING = os.path.join(OUTPUT, 'PROCESSING')
 # RESULTS = os.path.join(OUTPUT, 'RESULTS')
 # DELETE = os.path.join(OUTPUT, 'DELETE_LOGS')

@@ -1,5 +1,5 @@
 """
-Entrypoint for metamash
+Entrypoint for taxanlayser
 
 Check out the wiki for a detailed look at customising this file:
 https://github.com/beardymcjohnface/Snaketool/wiki/Customising-your-Snaketool
@@ -18,14 +18,14 @@ def snake_base(rel_path):
 
 def get_version():
     """Read and print the version from the version file"""
-    with open(snake_base("metamash.VERSION"), "r") as f:
+    with open(snake_base("taxanlayser.VERSION"), "r") as f:
         version = f.readline()
     return version
 
 
 def print_citation():
     """Read and print the Citation information from the citation file"""
-    with open(snake_base("metamash.CITATION"), "r") as f:
+    with open(snake_base("taxanlayser.CITATION"), "r") as f:
         for line in f:
             echo_click(line)
 
@@ -43,21 +43,25 @@ def common_options(func):
     """
     options = [
         click.option(
+            "-o",
             "--output",
             help="Output directory",
             type=click.Path(dir_okay=True, writable=True, readable=True),
-            default="metamash.out",
+            default="taxanlayser.out",
             show_default=True,
         ),
         click.option(
-            "--configfile",
+            "--config",
             default="config.yaml",
             show_default=False,
             callback=default_to_output,
             help="Custom config file [default: (outputDir)/config.yaml]",
         ),
         click.option(
-            "--threads", help="Number of threads to use", default=1, show_default=True
+            "-t",
+            "--threads",
+             help="Number of threads to use", 
+             default=1, show_default=True
         ),
         click.option(
             "--use-conda/--no-use-conda",
@@ -86,7 +90,7 @@ def common_options(func):
         ),
         click.option(
             "--log",
-            default="metamash.log",
+            default="taxanlayser.log",
             callback=default_to_output,
             hidden=True,
         ),
@@ -105,24 +109,24 @@ def cli():
     """Snakemake and Snaketool pipeline to taxonomically profile ONT long read metagenomics with sourmash
     \b
     For more options, run:
-    metamash command --help"""
+    taxanlayser command --help"""
     pass
 
 
 help_msg_extra = """
 \b
 CLUSTER EXECUTION:
-metamash run ... --profile [profile]
+taxanlayser run ... --profile [profile]
 For information on Snakemake profiles see:
 https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles
 \b
 RUN EXAMPLES:
-Required:           metamash run --input [file]
-Specify threads:    metamash run ... --threads [threads]
-Disable conda:      metamash run ... --no-use-conda 
-Change defaults:    metamash run ... --snake-default="-k --nolock"
-Add Snakemake args: metamash run ... --dry-run --keep-going --touch
-Specify targets:    metamash run ... all print_targets
+Required:           taxanlayser run --input [file]
+Specify threads:    taxanlayser run ... --threads [threads]
+Disable conda:      taxanlayser run ... --no-use-conda 
+Change defaults:    taxanlayser run ... --snake-default="-k --nolock"
+Add Snakemake args: taxanlayser run ... --dry-run --keep-going --touch
+Specify targets:    taxanlayser run ... all print_targets
 Available targets:
     all             Run everything (default)
     print_targets   List available targets
@@ -131,10 +135,10 @@ Available targets:
 help_msg_install = """
 \b
 Download the host genome 
-metamash install ... 
+taxanlayser install ... 
 \b
 RUN EXAMPLES:
-Database:           metamash install --database [file]
+Database:           taxanlayser install --database [file]
 """
 
 
@@ -145,29 +149,23 @@ Database:           metamash install --database [file]
         help_option_names=["-h", "--help"], ignore_unknown_options=True
     ),
 )
-@click.option("--input", "_input", help="Input directory", type=str, required=True)
-@click.option(
-            "--database",
-            help="Database directory",
-            type=click.Path(dir_okay=True, writable=True, readable=True),
-            default="host_db",
-            show_default=True,
-        )
+@click.option("-i","--input", "_input", help="Input csv with 2 columns", type=str, required=True)
 @common_options
-def run(_input, output, log, database, **kwargs):
-    """Run metamash"""
+def long(_input, output, log, config, **kwargs):
+    """Run taxanlayser long"""
     # Config to add or update in configfile
-    merge_config = {
+    merge_config = { "args": {
         "input": _input,
         "output": output,
-        "database": database,
+        "config": config,
         "log": log
+        }
     }
 
     # run!
     run_snakemake(
         # Full path to Snakefile
-        snakefile_path=snake_base(os.path.join("workflow", "run_metamash.smk")),
+        snakefile_path=snake_base(os.path.join("workflow", "run_taxanlayser.smk")),
         system_config=snake_base(os.path.join("config", "config.yaml")),
         merge_config=merge_config,
         log=log,
@@ -235,7 +233,8 @@ def citation(**kwargs):
     print_citation()
 
 
-cli.add_command(run)
+cli.add_command(long)
+# cli.add_command(paired)
 cli.add_command(install)
 cli.add_command(config)
 cli.add_command(citation)

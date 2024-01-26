@@ -16,10 +16,25 @@ SmallTime: 5
 BigTime: 300
 MediumTime: 120
 
-# mmseqs2 params
-gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
-uniref_50: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
-tmp: '/hpcfs/users/a1667917/tmp'
+# human reference genome FASTA file 
+
+qc:
+  min_quality: '10'
+  min_length: '100'
+
+# temp directory
+tmpdir: '/hpcfs/users/a1667917/tmp'
+
+databases:
+  t2t_fasta: '/hpcfs/users/a1667917/metagenomics_dbs/human_genomes/human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa'
+
+  # mmseqs2 params
+  mmseqs2:
+    gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
+    uniref_50: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
+
+
+
 
 # sourmash config 
 sourmash:

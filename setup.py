@@ -57,7 +57,7 @@ setup(
         "pyyaml>=6.0",
         "Click>=8.1.3",
         "metasnek>=0.0.6",
-        "trimnami>=0.0.7" 
+        "attrmap>=0.0.5"
     ],
     entry_points={
         "console_scripts": [

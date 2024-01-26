@@ -16,7 +16,7 @@ if not os.path.exists(os.path.join(HostDir)):
 
 rule all:
     input:
-        os.path.join(HostDir,"human-t2t-hla.fa")
+        os.path.join(HostDir,"human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa")
 
 rule get_db:
     """ 
@@ -27,11 +27,12 @@ rule get_db:
     conda:
         os.path.join( 'envs','gzip.yml')
     output:
-        fasta = os.path.join(HostDir,"human-t2t-hla.fa"),
+        fasta = os.path.join(HostDir,"human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa"),
 #        fin_flag = os.path.join(HostDir,"download.finished")
     shell:
         """
         cd {params.host_db}
-        wget "https://objectstorage.uk-london-1.oraclecloud.com/n/lrbvkel2wjot/b/human-genome-bucket/o/human-t2t-hla.fa.gz" -O human-t2t-hla.fa.gz
-        gunzip human-t2t-hla.fa.gz
+        wget "https://objectstorage.uk-london-1.oraclecloud.com/n/lrbvkel2wjot/b/human-genome-bucket/o/human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa.gz" -O human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa.gz
+        gunzip human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa.gz
         """
+
