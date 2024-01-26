@@ -23,12 +23,16 @@ def create_json(summaries_dir,  json_file_path):
         with open(summary_file, 'r') as file:
             content = file.read()
 
+            print(summary_file)
+
             base_name = os.path.basename(summary_file)
             stripped_name = os.path.splitext(base_name)[0]  # remove extension
             if stripped_name.endswith('_depletion_report'):
                 sample = stripped_name[:-len('_depletion_report')]
             else:
                 sys.exit("Sample not found.")
+
+            print(sample)
 
   
             barcode_sections = re.split(r'\n\n', content.strip())
