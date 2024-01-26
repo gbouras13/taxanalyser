@@ -162,6 +162,10 @@ def long(_input, output, log, config, **kwargs):
         }
     }
 
+    # Create the directory
+    if not os.path.exists(output):
+        os.makedirs(output)
+
     # run!
     run_snakemake(
         # Full path to Snakefile
