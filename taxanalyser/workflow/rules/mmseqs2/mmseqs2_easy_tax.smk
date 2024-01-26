@@ -29,7 +29,7 @@ rule run_mmseqs_easy_tax_uniref50:
     shell:
         # touch output to let workflow continue in cases where 0 results are found
         """
-        mmseqs easy-taxonomy {input.fasta} {params.db} {output.outdir} {params.tmpdir} --start-sens 1 --sens-steps 3 -s 7 --threads {threads} --orf-filter 0 2>> {log}
+        mmseqs easy-taxonomy {input.fasta} {params.db} {output.outdir} {params.tmpdir} -s 7 --threads {threads} --orf-filter 0 2>> {log}
         touch {output.outtouch}
         """
 
