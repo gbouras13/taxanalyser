@@ -46,9 +46,9 @@ rule host_removal_mapping_long:
         minimap2_version=os.path.join(dir.out.versions, "{sample}", "minimap2.version"),
         samtools_version=os.path.join(dir.out.versions, "{sample}", "samtools.version"),
     params:
-        compression=config.qc.compression,
-        minimap_mode=config.qc.minimapModel,
-        flagFilt=config.qc.hostRemoveFlagstat,
+        compression=config.minimap2.compression,
+        minimap_mode=config.minimap2.minimapModel,
+        flagFilt=config.minimap2.hostRemoveFlagstat,
     benchmark:
         os.path.join(dir.out.bench, "host_removal_mapping_long", "{sample}.txt")
     log:
@@ -111,9 +111,9 @@ rule  lambda_removal_mapping_long:
         minimap2_version=os.path.join(dir.out.versions, "{sample}", "minimap2.version"),
         samtools_version=os.path.join(dir.out.versions, "{sample}", "samtools.version"),
     params:
-        compression=config.qc.compression,
-        minimap_mode=config.qc.minimapModel,
-        flagFilt=config.qc.hostRemoveFlagstat,
+        compression=config.minimap2.compression,
+        minimap_mode=config.minimap2.minimapModel,
+        flagFilt=config.minimap2.hostRemoveFlagstat,
     benchmark:
         os.path.join(dir.out.bench, "lambda_removal_mapping_long", "{sample}.txt")
     log:
@@ -179,8 +179,8 @@ rule filtlong:
         time=config.resources.med.time,
     threads: config.resources.sml.cpu
     params:
-        qual=config.config.min_quality,
-        length=config.config.min_length,
+        qual=config.filtlong.min_quality,
+        length=config.filtlong.min_length,
     benchmark:
         os.path.join(dir.out.bench, "filtlong", "{sample}.txt")
     log:

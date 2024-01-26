@@ -15,7 +15,7 @@ resources:
 
 # minimap params
 
-qc:
+minimap2:
     compression:
         5
     minimapIndex:
@@ -28,7 +28,7 @@ qc:
 
 # human reference genome FASTA file 
 
-qc:
+filtlong:
     min_quality: '10'
     min_length: '100'
 

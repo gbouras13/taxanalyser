@@ -19,9 +19,6 @@ def count_fastq_reads(fastq_file):
 def create_depletion_report(sample, pre_depletion_fastq, post_lambda_fastq, post_chm13_fastq, summary_file_path):
 
 
-
-
-
     count_pre_depletion = count_fastq_reads(pre_depletion_fastq)
     count_post_lambda_depletion = count_fastq_reads(post_lambda_fastq)
     count_post_chm13_depletion = count_fastq_reads(post_chm13_fastq)
