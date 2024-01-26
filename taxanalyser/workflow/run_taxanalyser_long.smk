@@ -76,13 +76,13 @@ KSIZE = config.sourmash.ksize
 if not isinstance(KSIZE, list):
     KSIZE=[KSIZE]
 for k in KSIZE:
-    if k != 21 and k != 31 or k != 51:
-        sys.exit("You have specified a k size for sourmash not 21, 31 or 51. Please check your config file.")
-    else:
+    if k == 21 or k == 31 or k == 51:
         k_str = f"k{k}"
         if k_str not in search_databases.keys():
             raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
             sys.exit(-1)
+    else:
+        sys.exit("You have specified a k size for sourmash not 21, 31 or 51. Please check your config file.")
 
 
 ##############################
