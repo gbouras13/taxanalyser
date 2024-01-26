@@ -71,11 +71,10 @@ print(config)
 sourmash_params = config.sourmash
 print(sourmash_params)
 search_databases = config.sourmash.search_databases
-KSIZE = sourmash_params.get("ksize", [31, 51])
-
-print(sourmash_params)
-print(KSIZE)
 print(search_databases)
+KSIZE = sourmash_params.get("ksize", [31, 51])
+print(KSIZE)
+print('blah')
 
 if not isinstance(KSIZE, list):
     KSIZE=[KSIZE]
