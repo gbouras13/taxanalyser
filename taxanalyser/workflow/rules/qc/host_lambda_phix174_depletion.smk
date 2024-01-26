@@ -28,20 +28,86 @@ rule index_host_genome:
         minimap2 -t {threads} -I 8G -d {output.index} {input.t2t_fasta} &> {log}
         """
 
+
+rule  lambda_removal_mapping_long:
+    """Map reads to phage lambda and return unmapped reads"""
+    input:
+        phage_lambda=os.path.join(dir.contaminant_genomes, "lambda.fasta"),
+        fastq=get_input_lr_fastqs,
+    output:
+        r1=os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}.lambda_rm.fastq.gz"
+        ),
+        s=os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}_s.lambda_rm.fastq.gz"
+        ),
+        o=os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}_o.lambda_rm.fastq.gz"
+        ),
+        minimap2_version=os.path.join(dir.out.versions, "{sample}", "minimap2.version"),
+        samtools_version=os.path.join(dir.out.versions, "{sample}", "samtools.version"),
+    params:
+        compression=config.minimap2.compression,
+        minimap_mode=config.minimap2.minimapModel,
+        flagFilt=config.minimap2.hostRemoveFlagstat,
+    benchmark:
+        os.path.join(dir.out.bench, "lambda_removal_mapping_long", "{sample}.txt")
+    log:
+        mm=os.path.join(dir.out.stderr, "lambda_removal_mapping_long", "{sample}.minimap.log"),
+        sv=os.path.join(
+            dir.out.stderr, "lambda_removal_mapping_long", "{sample}.samtoolsView.log"
+        ),
+        fq=os.path.join(
+            dir.out.stderr, "lambda_removal_mapping_long", "{sample}.samtoolsFastq.log"
+        ),
+    resources:
+        mem_mb=config.resources.med.mem,
+        mem=str(config.resources.med.mem) + "MB",
+        time=config.resources.med.time,
+    threads: 
+        config.resources.med.cpu
+    conda:
+        os.path.join(dir.env, "contaminants.yaml")
+    shell:
+        (
+            "minimap2 "
+            "-ax {params.minimap_mode} "
+            "-t {threads} "
+            "--secondary=no "
+            "{input.phage_lambda} "
+            "{input.fastq} "
+            "2> {log.mm} "
+            "| samtools view "
+            "-h {params.flagFilt} "
+            "2> {log.sv} "
+            "| samtools fastq "
+            "-n -O -c 1 "
+            "-o {output.r1} "
+            "-0 {output.o} "
+            "-s {output.s} "
+            "2> {log.fq}; "
+            "cat {output.o} {output.s} >> {output.r1}; "
+            "minimap2 --version > {output.minimap2_version} "
+            "samtools --version  > {output.samtools_version} "
+        )
+
+
 rule host_removal_mapping_long:
     """Map reads to host and return unmapped reads"""
     input:
         index=os.path.join(dir.out.contaminant_index, "host.index"),
-        fastq=get_input_lr_fastqs,
+        fastq=os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}.lambda_rm.fastq.gz"
+        ),
     output:
         r1=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}.host_rm.fastq.gz"
+            dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
         ),
         s=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}_s.host_rm.fastq.gz"
+            dir.out.contaminant_removal, "{sample}", "{sample}_s.host_lambda_rm.fastq.gz"
         ),
         o=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}_o.host_rm.fastq.gz"
+            dir.out.contaminant_removal, "{sample}", "{sample}_o.host_lambda_rm.fastq.gz"
         ),
         minimap2_version=os.path.join(dir.out.versions, "{sample}", "minimap2.version"),
         samtools_version=os.path.join(dir.out.versions, "{sample}", "samtools.version"),
@@ -90,70 +156,6 @@ rule host_removal_mapping_long:
             "samtools --version  > {output.samtools_version} "
         )
 
-
-rule  lambda_removal_mapping_long:
-    """Map reads to phage lambda and return unmapped reads"""
-    input:
-        phage_lambda=os.path.join(dir.contaminant_genomes, "lambda.fasta"),
-        fastq=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}.host_rm.fastq.gz"
-        ),
-    output:
-        r1=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
-        ),
-        s=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}_s.host_lambda_rm.fastq.gz"
-        ),
-        o=os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}_o.host_lambda_rm.fastq.gz"
-        ),
-        minimap2_version=os.path.join(dir.out.versions, "{sample}", "minimap2.version"),
-        samtools_version=os.path.join(dir.out.versions, "{sample}", "samtools.version"),
-    params:
-        compression=config.minimap2.compression,
-        minimap_mode=config.minimap2.minimapModel,
-        flagFilt=config.minimap2.hostRemoveFlagstat,
-    benchmark:
-        os.path.join(dir.out.bench, "lambda_removal_mapping_long", "{sample}.txt")
-    log:
-        mm=os.path.join(dir.out.stderr, "lambda_removal_mapping_long", "{sample}.minimap.log"),
-        sv=os.path.join(
-            dir.out.stderr, "lambda_removal_mapping_long", "{sample}.samtoolsView.log"
-        ),
-        fq=os.path.join(
-            dir.out.stderr, "lambda_removal_mapping_long", "{sample}.samtoolsFastq.log"
-        ),
-    resources:
-        mem_mb=config.resources.med.mem,
-        mem=str(config.resources.med.mem) + "MB",
-        time=config.resources.med.time,
-    threads: 
-        config.resources.med.cpu
-    conda:
-        os.path.join(dir.env, "contaminants.yaml")
-    shell:
-        (
-            "minimap2 "
-            "-ax {params.minimap_mode} "
-            "-t {threads} "
-            "--secondary=no "
-            "{input.phage_lambda} "
-            "{input.fastq} "
-            "2> {log.mm} "
-            "| samtools view "
-            "-h {params.flagFilt} "
-            "2> {log.sv} "
-            "| samtools fastq "
-            "-n -O -c 1 "
-            "-o {output.r1} "
-            "-0 {output.o} "
-            "-s {output.s} "
-            "2> {log.fq}; "
-            "cat {output.o} {output.s} >> {output.r1}; "
-            "minimap2 --version > {output.minimap2_version} "
-            "samtools --version  > {output.samtools_version} "
-        )
 
         # lambda_phage=os.path.join(dir.contaminant_genomes, "lambda.fasta")
         # phix174_phage=os.path.join(dir.contaminant_genomes, "phix174.fasta")
@@ -230,10 +232,10 @@ rule create_depletion_report:
     input:
         pre_depletion_fastq = get_input_lr_fastqs,
         post_lambda_fastq = os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
+            dir.out.contaminant_removal, "{sample}", "{sample}.lambda_rm.fastq.gz"
         ),
         post_chm13_fastq = os.path.join(
-            dir.out.contaminant_removal, "{sample}", "{sample}.host_rm.fastq.gz"
+            dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
         ),
         post_filtlong_fastq = os.path.join(dir.out.qc, "{sample}_filtlong.fastq.gz")
     output:
