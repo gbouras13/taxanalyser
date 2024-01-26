@@ -1,7 +1,7 @@
 # Snakemake config
 input:
-output: 'metamash.out/'
-log: 'metamash/metamash.log'
+output: 'taxanalyser_output/'
+log: 'taxanalyser_output/taxanalyser.log'
 threads: 1
 
 # Snakemake Params

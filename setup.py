@@ -6,8 +6,8 @@ def get_version():
     with open(
         os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
-            "metamash",
-            "metamash.VERSION",
+            "taxanalyser",
+            "taxanalyser.VERSION",
         )
     ) as f:
         return f.readline().strip()
@@ -39,9 +39,9 @@ CLASSIFIERS = [
 ]
 
 setup(
-    name="metamash",
+    name="taxanalyser",
     packages=find_packages(),
-    url="https://github.com/gbouras13/metamash",
+    url="https://github.com/gbouras13/taxanalyser",
     python_requires=">=3.9",
     description="Snakemake and Snaketool pipeline to taxonomically profile ONT long read metagenomics with sourmash",
     long_description=get_description(),
@@ -50,7 +50,7 @@ setup(
     author="George Bouras",
     author_email="george.bouras@adelaide.edu.au",
     data_files=get_data_files(),
-    py_modules=["metamash"],
+    py_modules=["taxanalyser"],
     install_requires=[
         "snaketool-utils>=0.0.2",
         "snakemake>=7.14.0",
@@ -61,7 +61,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "metamash=metamash.__main__:main"
+            "taxanalyser=taxanalyser.__main__:main"
         ]
     },
     include_package_data=True,
