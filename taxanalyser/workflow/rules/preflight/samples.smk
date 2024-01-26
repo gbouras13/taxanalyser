@@ -21,7 +21,7 @@ def samplesFromCsvLong(csvFile):
     with open(csvFile, "r") as csv:
         for line in csv:
             l = line.strip().split(",")
-            if len(l) == 3:
+            if len(l) == 2:
                 outDict[l[0]] = {}
                 if os.path.isfile(l[1]):
                     outDict[l[0]]["LR"] = l[1]
@@ -63,7 +63,7 @@ def samplesFromCsvShort(csvFile):
     with open(csvFile, "r") as csv:
         for line in csv:
             l = line.strip().split(",")
-            if len(l) == 5:
+            if len(l) == 3:
                 outDict[l[0]] = {}
                 if (
                     os.path.isfile(l[1])
