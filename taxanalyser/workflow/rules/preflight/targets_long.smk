@@ -9,7 +9,7 @@ long
 TargetFilesLong = [
     os.path.join(dir.out.flags, "aggr_long_qc.flag"),
     os.path.join(dir.out.flags, "aggr_fastq_to_fasta.flag"),
-    os.path.join(dir.out.flags, "aggr_mmseqs2_tax.flag"),
+    #os.path.join(dir.out.flags, "aggr_mmseqs2_tax.flag"),
     os.path.join(dir.out.slyph, 'results.tsv') #sylph
 ]
 
