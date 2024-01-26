@@ -63,7 +63,8 @@ rule host_removal_mapping_long:
         mem_mb=config.resources.med.mem,
         mem=str(config.resources.med.mem) + "MB",
         time=config.resources.med.time,
-    threads: config.resources.med.cpu
+    threads: 
+        config.resources.med.cpu
     conda:
         os.path.join(dir.env, "contaminants.yaml")
     shell:
@@ -127,7 +128,8 @@ rule  lambda_removal_mapping_long:
         mem_mb=config.resources.med.mem,
         mem=str(config.resources.med.mem) + "MB",
         time=config.resources.med.time,
-    threads: config.resources.med.cpu
+    threads: 
+        config.resources.med.cpu
     conda:
         os.path.join(dir.env, "contaminants.yaml")
     shell:
