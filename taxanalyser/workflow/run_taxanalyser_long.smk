@@ -14,10 +14,8 @@ def copy_log_file():
     current_log = max(files, key=os.path.getmtime)
     shell("cat " + current_log + " >> " + LOG)
 
-
 onsuccess:
     copy_log_file()
-
 
 onerror:
     copy_log_file()
@@ -26,7 +24,6 @@ onerror:
 
 # config file
 configfile: os.path.join(workflow.basedir, "../", "config", "config.yaml")
-
 
 config = ap.AttrMap(config)
 
@@ -55,7 +52,6 @@ THREADS = config.args.threads
 # Parse the samples and read files
 dictReads = parseSamples(INPUT, long_flag=True)  # long flag True
 SAMPLES = list(dictReads.keys())
-
 
 # mmseqs2 dirs
 LAMBDA = os.path.join(dir.contaminant_genomes, "lambda.fasta")

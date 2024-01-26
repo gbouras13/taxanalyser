@@ -8,33 +8,18 @@ https://github.com/beardymcjohnface/Snaketool/wiki/Customising-your-Snaketool
 import os
 import click
 
-from snaketool_utils.cli_utils import OrderedCommands, run_snakemake, copy_config, echo_click
+from .util import (
+    OrderedCommands,
+    copy_config,
+    default_to_output,
+    print_citation,
+    print_version,
+    run_snakemake,
+    snake_base,
+)
 
 
-def snake_base(rel_path):
-    """Get the filepath to a Snaketool system file (relative to __main__.py)"""
-    return os.path.join(os.path.dirname(os.path.realpath(__file__)), rel_path)
 
-
-def get_version():
-    """Read and print the version from the version file"""
-    with open(snake_base("taxanalyser.VERSION"), "r") as f:
-        version = f.readline()
-    return version
-
-
-def print_citation():
-    """Read and print the Citation information from the citation file"""
-    with open(snake_base("taxanalyser.CITATION"), "r") as f:
-        for line in f:
-            echo_click(line)
-
-
-def default_to_output(ctx, param, value):
-    """Callback for click options; places value in output directory unless specified"""
-    if param.default == value:
-        return os.path.join(ctx.params["output"], value)
-    return value
 
 
 def common_options(func):
@@ -161,16 +146,11 @@ def long(_input, output, log, config, **kwargs):
         "log": log
         }
     }
-
-    # Create the directory
-    if not os.path.exists(output):
-        os.makedirs(output)
-
-    # run!
+    
+    # run
     run_snakemake(
         # Full path to Snakefile
         snakefile_path=snake_base(os.path.join("workflow", "run_taxanalyser_long.smk")),
-        system_config=snake_base(os.path.join("config", "config.yaml")),
         merge_config=merge_config,
         log=log,
         **kwargs
@@ -218,11 +198,12 @@ def install( database, log,   **kwargs):
     }
     """Install databases"""
     run_snakemake(
-        snakefile_path=snake_base(os.path.join('workflow','download_chm13_host.smk')),
-        system_config=snake_base(os.path.join("config", "config.yaml")),
+        # Full path to Snakefile
+        snakefile_path=snake_base(os.path.join("workflow", "download_chm13_host.smk")),
         merge_config=merge_config,
-        **kwargs)
-
+        log=log,
+        **kwargs
+    )
 
 @click.command()
 @common_options
