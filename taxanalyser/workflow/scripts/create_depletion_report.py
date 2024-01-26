@@ -37,4 +37,4 @@ def create_depletion_report(sample, pre_depletion_fastq, post_lambda_fastq, post
 
 
 # to actually run the script
-create_depletion_report(snakemake.wildcards.sample, snakemake.input.pre_depletion_fastq, snakemake.input.post_lambda_fastq, snakemake.input.post_chm13_fastq, snakemake.input.post_filtlong_fastq, snakemak.output.summary_file_path)
+create_depletion_report(snakemake.wildcards.sample, snakemake.input.pre_depletion_fastq, snakemake.input.post_lambda_fastq, snakemake.input.post_chm13_fastq, snakemake.input.post_filtlong_fastq, snakemake.output.summary_file_path)
