@@ -169,7 +169,7 @@ def long(_input, output, log, config, **kwargs):
     # run!
     run_snakemake(
         # Full path to Snakefile
-        snakefile_path=snake_base(os.path.join("workflow", "run_taxanalyser.smk")),
+        snakefile_path=snake_base(os.path.join("workflow", "run_taxanalyser_long.smk")),
         system_config=snake_base(os.path.join("config", "config.yaml")),
         merge_config=merge_config,
         log=log,
