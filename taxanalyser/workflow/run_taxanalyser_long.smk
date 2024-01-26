@@ -93,6 +93,8 @@ for k in KSIZE:
 # import dir
 
 include: os.path.join("rules", "qc", "host_lambda_phix174_depletion.smk")
+include: os.path.join("rules", "mmseqs2", "fastq_to_fasta.smk")
+include: os.path.join("rules", "mmseqs2", "mmseqs2_easy_tax.smk")
 
 #include: "rules/sourmash_sketch.smk"
 #include: "rules/sourmash_gather.smk"
