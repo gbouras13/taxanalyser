@@ -13,6 +13,19 @@ resources:
         cpu: 1
         time: "00:00:05"   # Max runtime for small jobs (used for grouped jobs; relevant for scheduler)
 
+# minimap params
+
+qc:
+    compression:
+        5
+    minimapIndex:
+        -I 8G
+    hostRemoveFlagstat:
+        -f 4
+        -F 3584
+    minimapModel: #"sr", "map-pb", "map-ont", "map-hifi"
+        map-ont
+
 # human reference genome FASTA file 
 
 qc:
