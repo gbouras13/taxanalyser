@@ -2,7 +2,7 @@ rule fastq_to_fasta:
     input:
         fastq=os.path.join(dir.out.qc, "{sample}_filtlong.fastq.gz")
     output:
-        fasta=os.path.join(dir.processing.fastas, "{sample}.fasta")
+        fasta=os.path.join(dir.out.fastas, "{sample}.fasta")
     threads: config.resources.sml.cpu
     benchmark:
         os.path.join(dir.out.bench, "fastq_to_fastq", "{sample}.txt")
@@ -20,7 +20,7 @@ rule fastq_to_fasta:
 
 rule aggr_fastq_to_fasta:
     input:
-        expand(os.path.join(dir.processing.fastas, "{sample}.fasta"), sample = SAMPLES)
+        expand(os.path.join(dir.out.fastas, "{sample}.fasta"), sample = SAMPLES)
     output:
         flag=os.path.join(dir.out.flags, "aggr_fastq_to_fasta.flag"),
     threads: config.resources.sml.cpu

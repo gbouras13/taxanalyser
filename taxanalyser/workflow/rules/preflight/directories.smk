@@ -47,3 +47,4 @@ dir.out.contaminant_removal = os.path.join(dir.out.processing, "contaminant_remo
 # mmseqs2
 
 dir.out.fastas = os.path.join(dir.out.processing, "fastas")
+dir.out.mmseqs2 = os.path.join(dir.out.processing, "mmseqs2")
