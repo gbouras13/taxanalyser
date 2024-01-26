@@ -9,7 +9,7 @@ rule fastq_to_fasta:
     log:
         os.path.join(dir.out.stderr, "fastq_to_fastq", "{sample}.log"),
     conda: 
-        os.path.join("..", "envs", "scripts.yml")
+        os.path.join(dir.env, "scripts.yaml")
     resources:
         mem_mb=config.resources.sml.mem,
         mem=str(config.resources.sml.mem) + "MB",

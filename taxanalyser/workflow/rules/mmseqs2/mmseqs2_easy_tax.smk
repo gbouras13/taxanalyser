@@ -25,7 +25,7 @@ rule run_mmseqs_easy_tax_uniref50:
     log:
         os.path.join(dir.out.stderr, "mmseqs2", "{sample}.taxonomy.log"),
     conda: 
-        os.path.join("..", "envs", "mmseqs2.yml")
+        os.path.join(dir.env, "mmseqs2.yaml")
     shell:
         # touch output to let workflow continue in cases where 0 results are found
         """
