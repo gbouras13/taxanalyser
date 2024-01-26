@@ -1,8 +1,0 @@
-name: biopython
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - gzip
-  - biopython

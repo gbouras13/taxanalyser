@@ -19,4 +19,4 @@ def fastq_to_fasta(input_filename, output_filename):
         print(f"A parsing error occurred: {e}")
 
 # to actually run the script
-fastq_to_fasta(snakemake.input[0], snakemake.output[0])
+fastq_to_fasta(snakemake.input.fastq, snakemake.output.fasta)

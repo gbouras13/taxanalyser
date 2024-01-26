@@ -1,8 +1,8 @@
 # Snakemake Params
 resources:
     big:
-        mem: 32000      # Memory for big  jobs in megabytes (e.g 64GB = 64000, recommend >= 64000)
-        cpu: 16         # Threads (recommend >= 16)
+        mem: 128000      # Memory for big  jobs in megabytes (e.g 64GB = 64000, recommend >= 64000)
+        cpu: 32         # Threads (recommend >= 16)
         time: "23:59:00"      # Max runtime  (allows to set max time for the scheduler via snakemake profiles)
     med:
         mem: 16000      # Memory for most jobs in megabytes 
@@ -35,13 +35,15 @@ filtlong:
 # temp directory
 tmpdir: '/hpcfs/users/a1667917/tmp'
 
+# host genome
 databases:
     t2t_fasta: '/hpcfs/users/a1667917/metagenomics_dbs/human_genomes/human-t2t-hla.argos-bacteria-985_rs-viral-202401_ml-phage-202401.fa'
 
-    # mmseqs2 params
-    mmseqs2:
-      gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
-      uniref_50: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
+
+  # mmseqs2 params
+mmseqs2:
+  gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
+  uniref_50_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
 
 
 

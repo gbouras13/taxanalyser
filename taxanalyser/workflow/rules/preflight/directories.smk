@@ -44,3 +44,6 @@ dir.contaminant_genomes = os.path.join(workflow.basedir, "../", "contaminant_gen
 dir.out.contaminant_index = os.path.join(dir.out.processing, "contaminant_index")
 dir.out.contaminant_removal = os.path.join(dir.out.processing, "contaminant_removal")
 
+# mmseqs2
+
+dir.out.fastas = os.path.join(dir.out.processing, "fastas")
