@@ -48,3 +48,7 @@ dir.out.contaminant_removal = os.path.join(dir.out.processing, "contaminant_remo
 
 dir.out.fastas = os.path.join(dir.out.processing, "fastas")
 dir.out.mmseqs2 = os.path.join(dir.out.processing, "mmseqs2")
+
+# sylph 
+
+dir.out.slyph = os.path.join(dir.out.processing, "slyph")

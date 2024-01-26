@@ -1,0 +1,7 @@
+name: sylph-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - sylph >=0.5.1

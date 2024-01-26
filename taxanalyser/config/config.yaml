@@ -45,6 +45,9 @@ mmseqs2:
   gtdb_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/GTDB'
   uniref_50_dir: '/hpcfs/users/a1667917/metagenomics_dbs/mmseqs2/UniRef50'
 
+# https://github.com/bluenote-1577/sylph/wiki/Pre%E2%80%90built-databases
+sylph:
+  gtdb_200: '/hpcfs/users/a1667917/metagenomics_dbs/sylph/v0.3-c200-gtdb-r214.syldb'
 
 
 
