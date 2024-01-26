@@ -24,9 +24,9 @@ def snake_base(rel_path):
 
 
 def print_version():
-    with open(snake_base("hybracter.VERSION"), "r") as f:
+    with open(snake_base("taxanalyser.VERSION"), "r") as f:
         version = f.readline()
-    echo_click("\n" + "hybracter version " + version + "\n")
+    echo_click("\n" + "taxanalyser version " + version + "\n")
 
 
 def echo_click(msg, log=None):
@@ -37,7 +37,7 @@ def echo_click(msg, log=None):
 
 
 def print_citation():
-    with open(snake_base("hybracter.CITATION"), "r") as f:
+    with open(snake_base("taxanalyser.CITATION"), "r") as f:
         for line in f:
             echo_click(line)
 
