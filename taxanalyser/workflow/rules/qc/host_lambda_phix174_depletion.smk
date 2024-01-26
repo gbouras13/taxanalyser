@@ -169,7 +169,7 @@ rule filtlong:
             dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
         ),
     output:
-        fastq=os.path.join(dir.out.qc, "{sample}_filt.fastq.gz"),
+        fastq=os.path.join(dir.out.qc, "{sample}_filtlong.fastq.gz"),
         version=os.path.join(dir.out.versions, "{sample}", "filtlong.version"),
     conda:
         os.path.join(dir.env, "filtlong.yaml")
@@ -226,12 +226,36 @@ rule filtlong:
 #         """
 
 
+rule create_depletion_report:
+    input:
+        pre_depletion_fastq = get_input_lr_fastqs,
+        post_lambda_fastq = os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
+        ),
+        post_chm13_fastq = os.path.join(
+            dir.out.contaminant_removal, "{sample}", "{sample}.host_rm.fastq.gz"
+        ),
+        post_filtlong_fastq = os.path.join(dir.out.qc, "{sample}_filtlong.fastq.gz")
+    output:
+        summary_file_path=os.path.join(dir.out.qc_report, "{sample}_depletion_report.txt")
+    conda:
+        os.path.join(dir.env, "scripts.yaml")
+    resources:
+        mem_mb=config.resources.sml.mem,
+        mem=str(config.resources.sml.mem) + "MB",
+        time=config.resources.sml.time,
+    threads: config.resources.sml.cpu
+    script:
+        os.path.join(dir.scripts, "create_depletion_report.py")
+
+
+
 rule aggr_long_qc:
     """
     aggregates over all samples for long read qc
     """
     input:
-        expand(os.path.join(dir.out.qc, "{sample}_filt.fastq.gz"), sample=SAMPLES),
+        expand(os.path.join(dir.out.qc_report, "{sample}_depletion_report.txt"), sample=SAMPLES),
     output:
         flag=os.path.join(dir.out.flags, "aggr_long_qc.flag"),
     resources:

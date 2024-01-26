@@ -31,6 +31,8 @@ dir.out.flags = os.path.join(dir.out.base, "flags")
 dir.out.versions = os.path.join(dir.out.base, "versions")
 dir.out.processing = os.path.join(dir.out.base, "processing")
 dir.out.qc = os.path.join(dir.out.base, "qc")
+dir.out.qc_report = os.path.join(dir.out.base, "qc_report")
+
 
 # logs and benchmarks
 dir.out.bench = os.path.join(dir.out.base, "benchmarks")
