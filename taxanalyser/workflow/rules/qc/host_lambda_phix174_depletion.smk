@@ -249,6 +249,24 @@ rule create_depletion_report:
         os.path.join(dir.scripts, "create_depletion_report.py")
 
 
+rule create_total_json:
+    input:
+        summaries = expand(os.path.join(dir.out.qc_report, "{sample}_depletion_report.txt"), sample=SAMPLES)
+    output:
+        json_file_path=os.path.join(dir.out.qc_report, "final_depletion_report.json")
+    conda:
+        os.path.join(dir.env, "scripts.yaml")
+    params:
+        summaries_dir = dir.out.qc_report
+    resources:
+        mem_mb=config.resources.sml.mem,
+        mem=str(config.resources.sml.mem) + "MB",
+        time=config.resources.sml.time,
+    threads: config.resources.sml.cpu
+    script:
+        os.path.join(dir.scripts, "create_depletion_report.py")
+
+
 
 rule aggr_long_qc:
     """
@@ -256,6 +274,7 @@ rule aggr_long_qc:
     """
     input:
         expand(os.path.join(dir.out.qc_report, "{sample}_depletion_report.txt"), sample=SAMPLES),
+        json_file_path=os.path.join(dir.out.qc_report, "final_depletion_report.json")
     output:
         flag=os.path.join(dir.out.flags, "aggr_long_qc.flag"),
     resources:
