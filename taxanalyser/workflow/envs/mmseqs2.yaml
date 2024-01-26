@@ -1,0 +1,7 @@
+name: mmseqs2-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - mmseqs2==15.6f452
