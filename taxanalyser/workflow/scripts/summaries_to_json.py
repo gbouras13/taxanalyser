@@ -58,4 +58,4 @@ def create_json(summaries_dir,  json_file_path):
             json_file.write(json_data)
 
 # to actually run the script
-create_json(snakemake.params.summaries_dir, snakemak.output.json_file_path)
+create_json(snakemake.params.summaries_dir, snakemake.output.json_file_path)
