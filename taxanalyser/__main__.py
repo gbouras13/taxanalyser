@@ -89,7 +89,7 @@ def common_options(func):
 @click.group(
     cls=OrderedCommands, context_settings=dict(help_option_names=["-h", "--help"])
 )
-@click.version_option(get_version(), "-v", "--version", is_flag=True)
+@click.version_option(print_version(), "-v", "--version", is_flag=True)
 def cli():
     """Snakemake and Snaketool pipeline to taxonomically profile ONT long read metagenomics with sourmash
     \b
@@ -146,7 +146,7 @@ def long(_input, output, log, config, **kwargs):
         "log": log
         }
     }
-    
+
     # run
     run_snakemake(
         # Full path to Snakefile
