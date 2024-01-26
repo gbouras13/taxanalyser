@@ -94,7 +94,7 @@ for k in KSIZE:
 # import dir
 include: os.path.join("rules", "preflight", "directories.smk")
 
-include: os.path.join("rules", "qc", "remove_contaminants.smk")
+include: os.path.join("rules", "qc", "host_lambda_phix174_depletion.smk")
 
 #include: "rules/sourmash_sketch.smk"
 #include: "rules/sourmash_gather.smk"
