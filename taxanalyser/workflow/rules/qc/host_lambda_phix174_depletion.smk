@@ -264,7 +264,7 @@ rule create_total_json:
         time=config.resources.sml.time,
     threads: config.resources.sml.cpu
     script:
-        os.path.join(dir.scripts, "summaries_tp_json.py")
+        os.path.join(dir.scripts, "summaries_to_json.py")
 
 
 
