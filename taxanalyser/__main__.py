@@ -1,5 +1,5 @@
 """
-Entrypoint for taxanlayser
+Entrypoint for taxanalayser
 
 Check out the wiki for a detailed look at customising this file:
 https://github.com/beardymcjohnface/Snaketool/wiki/Customising-your-Snaketool
@@ -18,14 +18,14 @@ def snake_base(rel_path):
 
 def get_version():
     """Read and print the version from the version file"""
-    with open(snake_base("taxanlayser.VERSION"), "r") as f:
+    with open(snake_base("taxanalayser.VERSION"), "r") as f:
         version = f.readline()
     return version
 
 
 def print_citation():
     """Read and print the Citation information from the citation file"""
-    with open(snake_base("taxanlayser.CITATION"), "r") as f:
+    with open(snake_base("taxanalayser.CITATION"), "r") as f:
         for line in f:
             echo_click(line)
 
@@ -47,7 +47,7 @@ def common_options(func):
             "--output",
             help="Output directory",
             type=click.Path(dir_okay=True, writable=True, readable=True),
-            default="taxanlayser.out",
+            default="taxanalayser.out",
             show_default=True,
         ),
         click.option(
@@ -90,7 +90,7 @@ def common_options(func):
         ),
         click.option(
             "--log",
-            default="taxanlayser.log",
+            default="taxanalayser.log",
             callback=default_to_output,
             hidden=True,
         ),
@@ -109,24 +109,24 @@ def cli():
     """Snakemake and Snaketool pipeline to taxonomically profile ONT long read metagenomics with sourmash
     \b
     For more options, run:
-    taxanlayser command --help"""
+    taxanalayser command --help"""
     pass
 
 
 help_msg_extra = """
 \b
 CLUSTER EXECUTION:
-taxanlayser run ... --profile [profile]
+taxanalayser run ... --profile [profile]
 For information on Snakemake profiles see:
 https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles
 \b
 RUN EXAMPLES:
-Required:           taxanlayser run --input [file]
-Specify threads:    taxanlayser run ... --threads [threads]
-Disable conda:      taxanlayser run ... --no-use-conda 
-Change defaults:    taxanlayser run ... --snake-default="-k --nolock"
-Add Snakemake args: taxanlayser run ... --dry-run --keep-going --touch
-Specify targets:    taxanlayser run ... all print_targets
+Required:           taxanalayser run --input [file]
+Specify threads:    taxanalayser run ... --threads [threads]
+Disable conda:      taxanalayser run ... --no-use-conda 
+Change defaults:    taxanalayser run ... --snake-default="-k --nolock"
+Add Snakemake args: taxanalayser run ... --dry-run --keep-going --touch
+Specify targets:    taxanalayser run ... all print_targets
 Available targets:
     all             Run everything (default)
     print_targets   List available targets
@@ -135,10 +135,10 @@ Available targets:
 help_msg_install = """
 \b
 Download the host genome 
-taxanlayser install ... 
+taxanalayser install ... 
 \b
 RUN EXAMPLES:
-Database:           taxanlayser install --database [file]
+Database:           taxanalayser install --database [file]
 """
 
 
@@ -152,7 +152,7 @@ Database:           taxanlayser install --database [file]
 @click.option("-i","--input", "_input", help="Input csv with 2 columns", type=str, required=True)
 @common_options
 def long(_input, output, log, config, **kwargs):
-    """Run taxanlayser long"""
+    """Run taxanalayser long"""
     # Config to add or update in configfile
     merge_config = { "args": {
         "input": _input,
@@ -165,7 +165,7 @@ def long(_input, output, log, config, **kwargs):
     # run!
     run_snakemake(
         # Full path to Snakefile
-        snakefile_path=snake_base(os.path.join("workflow", "run_taxanlayser.smk")),
+        snakefile_path=snake_base(os.path.join("workflow", "run_taxanalayser.smk")),
         system_config=snake_base(os.path.join("config", "config.yaml")),
         merge_config=merge_config,
         log=log,
