@@ -36,7 +36,7 @@ def common_options(func):
             show_default=True,
         ),
         click.option(
-            "--config",
+            "--configfile",
             default="config.yaml",
             show_default=False,
             callback=default_to_output,
@@ -136,13 +136,12 @@ Database:           taxanalyser install --database [file]
 )
 @click.option("-i","--input", "_input", help="Input csv with 2 columns", type=str, required=True)
 @common_options
-def long(_input, output, log, config, **kwargs):
+def long(_input, output, log, **kwargs):
     """Run taxanalyser long"""
     # Config to add or update in configfile
     merge_config = { "args": {
         "input": _input,
         "output": output,
-        "config": config,
         "log": log
         }
     }
