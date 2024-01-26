@@ -3,7 +3,7 @@ rule run_sylph:
     input: 
         reads = expand(os.path.join(
             dir.out.contaminant_removal, "{sample}", "{sample}.host_lambda_rm.fastq.gz"
-        ))
+        ), sample = SAMPLES)
     output:
         results=os.path.join(dir.out.slyph, 'results.tsv')
     threads: 
@@ -24,5 +24,4 @@ rule run_sylph:
         """
         sylph query {input.reads} {params.gtdb_200} -t {threads}  > results.tsv
         """
-
 
