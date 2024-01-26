@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-
-import os
-import subprocess as sp
 import gzip
 
 def count_fastq_reads(fastq_file):

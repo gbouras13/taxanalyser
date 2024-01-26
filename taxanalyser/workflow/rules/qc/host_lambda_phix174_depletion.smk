@@ -94,7 +94,7 @@ rule host_removal_mapping_long:
 rule  lambda_removal_mapping_long:
     """Map reads to phage lambda and return unmapped reads"""
     input:
-        lambda_phage=os.path.join(dir.contaminant_genomes, "lambda.fasta"),
+        phage_lambda=os.path.join(dir.contaminant_genomes, "lambda.fasta"),
         fastq=os.path.join(
             dir.out.contaminant_removal, "{sample}", "{sample}.host_rm.fastq.gz"
         ),
