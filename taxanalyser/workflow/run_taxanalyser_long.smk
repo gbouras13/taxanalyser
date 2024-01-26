@@ -69,20 +69,20 @@ TMPDIR = config.tmpdir
 
 
 sourmash_params = config.sourmash
-print(sourmash_params)
 search_databases = config.sourmash.search_databases
-print(search_databases)
 KSIZE = config.sourmash.ksize
-print(KSIZE)
-print('blah')
+
 
 if not isinstance(KSIZE, list):
     KSIZE=[KSIZE]
 for k in KSIZE:
-    k_str = f"k{k}"
-    if k_str not in search_databases.keys():
-        raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
-        sys.exit(-1)
+    if k != 21 and k != 31 or k != 51:
+        sys.exit("You have specified a k size for sourmash not 21, 31 or 51. Please check your config file.")
+    else:
+        k_str = f"k{k}"
+        if k_str not in search_databases.keys():
+            raise ValueError(f"Database not specified for search ksize {k_str}. Please specify databases in `config.yaml` file.")
+            sys.exit(-1)
 
 
 ##############################
@@ -92,9 +92,9 @@ for k in KSIZE:
 
 
 # import dir
-include: "rules/directories.smk"
+include: os.path.join("rules", "preflight", "directories.smk")
 
-include: "rules/qc/remove_contaminants.smk"
+include: os.path.join("rules", "qc", "remove_contaminants.smk")
 
 #include: "rules/sourmash_sketch.smk"
 #include: "rules/sourmash_gather.smk"
@@ -106,39 +106,12 @@ include: "rules/qc/remove_contaminants.smk"
 
 
 # import targets
-include: "rules/targets.smk"
+include: os.path.join("rules", "preflight", "targets_long.smk")
 
 
 
 rule all:
     input:
-        TargetFilesMMseqs2
-
-
-
-
-# # Target file
-# outTouch = os.path.join(config['output'], config['input'])
-
-
-# # Mark target rules
-# target_rules = []
-# def targetRule(fn):
-#     assert fn.__name__.startswith('__')
-#     target_rules.append(fn.__name__[2:])
-#     return fn
-
-
-# @targetRule
-# rule all:
-#     input:
-#         outTouch
-
-
-# @targetRule
-# rule print_targets:
-#     run:
-#         print("\nTop level rules are: \n", file=sys.stderr)
-#         print("* " + "\n* ".join(target_rules) + "\n\n", file=sys.stderr)
+        TargetFilesLong
 
 
