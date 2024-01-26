@@ -1,7 +1,7 @@
 # Snakemake config
 input:
-output: 'taxanalyser_output/'
-log: 'taxanalyser_output/taxanalyser.log'
+output: 
+log: 
 threads: 1
 
 # Snakemake Params
