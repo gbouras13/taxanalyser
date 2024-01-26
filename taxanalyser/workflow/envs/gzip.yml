@@ -1,7 +1,0 @@
-name: gzip
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - gzip
