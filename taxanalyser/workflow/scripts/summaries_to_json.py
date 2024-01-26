@@ -14,16 +14,13 @@ def create_json(summaries_dir,  json_file_path):
     # Get a list of files that match the pattern in the directory
     summary_list = glob.glob(os.path.join(summaries_dir, pattern))
 
-    # write all the summary dfs to a list
-    summaries = []
 
     result_dict = {}
 
-    for summary_file in summaries:
+    for summary_file in summary_list:
         with open(summary_file, 'r') as file:
             content = file.read()
 
-            print(summary_file)
 
             base_name = os.path.basename(summary_file)
             stripped_name = os.path.splitext(base_name)[0]  # remove extension
@@ -32,7 +29,7 @@ def create_json(summaries_dir,  json_file_path):
             else:
                 sys.exit("Sample not found.")
 
-            print(sample)
+
 
   
             barcode_sections = re.split(r'\n\n', content.strip())
@@ -54,9 +51,6 @@ def create_json(summaries_dir,  json_file_path):
 
     # Reorganize barcodes by alphanumeric order
     result_dict_sorted = {k: result_dict[k] for k in sorted(result_dict)}
-
-
-    print(result_dict_sorted)
 
     # Convert the dictionary to JSON format
     json_data = json.dumps(result_dict_sorted, indent=4)
