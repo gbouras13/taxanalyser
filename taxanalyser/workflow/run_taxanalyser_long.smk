@@ -66,7 +66,7 @@ TMPDIR = config.tmpdir
 # db search
 #####
 
-
+print(config)
 
 sourmash_params = config.sourmash
 search_databases = config.sourmash.search_databases
