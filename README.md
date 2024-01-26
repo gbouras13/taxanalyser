@@ -1,6 +1,5 @@
 # metamash
-Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline to taxonomically profile ONT long read metagenomics with sourmash
-
+Snakemake and [Snaketool](https://github.com/beardymcjohnface/Snaketool) pipeline to taxonomically profile ONT long read metagenomics.
 
 Snakemake and Snaketool pipeline to taxonomically profile ONT long read metagenomics with sourmash
 
