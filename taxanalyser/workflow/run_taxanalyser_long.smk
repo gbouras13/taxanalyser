@@ -66,13 +66,13 @@ TMPDIR = config.tmpdir
 # db search
 #####
 
-print(config)
+
 
 sourmash_params = config.sourmash
 print(sourmash_params)
 search_databases = config.sourmash.search_databases
 print(search_databases)
-KSIZE = sourmash_params.get("ksize", [31, 51])
+KSIZE = config.sourmash.ksize
 print(KSIZE)
 print('blah')
 
